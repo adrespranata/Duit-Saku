@@ -32,6 +32,12 @@ class ListUsers extends ListRecords
             'Unverified' => Tab::make()
                 ->badge(User::where('email_verified_at', null)->count())
                 ->modifyQueryUsing(fn(Builder $query): Builder => $query->whereNull('email_verified_at')),
+            'Active' => Tab::make()
+                ->badge(User::where('is_active', true)->count())
+                ->modifyQueryUsing(fn(Builder $query): Builder => $query->where('is_active', true)),
+            'Inactive' => Tab::make()
+                ->badge(User::where('is_active', false)->count())
+                ->modifyQueryUsing(fn(Builder $query): Builder => $query->where('is_active', false)),
         ];
     }
 }

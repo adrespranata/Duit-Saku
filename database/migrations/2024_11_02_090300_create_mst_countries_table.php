@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cities', function (Blueprint $table) {
+        Schema::create('mst_countries', function (Blueprint $table) {
             $table->id();
+            $table->char('code', 3)->unique();
+            $table->string('name');
+            $table->char('phonecode')->nullable();
             $table->timestamps();
         });
     }
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('mst_countries');
     }
 };

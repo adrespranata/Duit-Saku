@@ -52,4 +52,11 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+    protected static function booted(): void
+    {
+        static::creating(function (User $user) {
+            $user->role_id = 2;
+        });
+    }
 }

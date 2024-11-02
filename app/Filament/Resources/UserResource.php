@@ -3,10 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers\RolesRelationManager;
 use App\Models\User;
 use Filament\Forms;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -38,7 +36,7 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Section::make('User Information')
+                Forms\Components\Section::make('User Information')
                     ->schema([
                         Forms\Components\TextInput::make('name')
                             ->required()
@@ -50,13 +48,23 @@ class UserResource extends Resource
                         Forms\Components\TextInput::make('password')
                             ->password()
                             ->required()
-                            ->maxLength(255),
+                            ->maxLength(255)
+                            ->revealable(),
                         Forms\Components\TextInput::make('Confirm Password')
                             ->password()
                             ->required()
+                            ->revealable()
                             ->same('password')
                             ->maxLength(255),
-                    ])->columns(2)
+                        Forms\Components\Select::make('role_id')
+                            ->preload()
+                            ->required()
+                            ->searchable()
+                            ->label('Role')
+                            ->placeholder('Select Role')
+                            ->relationship('roles', 'name')
+                    ])
+                    ->columns(2)
             ]);
     }
 

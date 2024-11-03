@@ -8,8 +8,6 @@ use App\Models\City;
 use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Infolists\Components\Section;
-use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -130,11 +128,11 @@ class CityResource extends Resource
     {
         return $infolist
             ->schema([
-                Section::make('State Information')
+                \Filament\Infolists\Components\Section::make('State Information')
                     ->schema([
-                        TextEntry::make('state.name')
+                        \Filament\Infolists\Components\TextEntry::make('state.name')
                             ->label('State'),
-                        TextEntry::make('name')
+                        \Filament\Infolists\Components\TextEntry::make('name')
                             ->label('Name'),
                     ])
                     ->columns(2)

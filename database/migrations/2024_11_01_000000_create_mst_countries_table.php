@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->char('code', 3)->unique();
             $table->string('name');
+            $table->string('slug');
             $table->char('phonecode')->nullable();
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

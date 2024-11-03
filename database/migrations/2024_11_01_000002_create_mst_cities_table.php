@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('state_id')->constrained('mst_states')->cascadeOnDelete();
             $table->string('name');
+            $table->string('slug');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

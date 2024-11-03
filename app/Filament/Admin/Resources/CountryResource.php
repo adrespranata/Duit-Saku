@@ -7,9 +7,7 @@ use App\Filament\Admin\Resources\CountryResource\RelationManagers\StatesRelation
 use App\Models\Country;
 use Carbon\Carbon;
 use Filament\Forms;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
-use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -43,7 +41,7 @@ class CountryResource extends Resource
     {
         return $form
             ->schema([
-                Section::make('Country Details')
+                \Filament\Forms\Components\Section::make('Country Details')
                     ->schema([
                         Forms\Components\TextInput::make('code')
                             ->required()
@@ -126,13 +124,13 @@ class CountryResource extends Resource
     {
         return $infolist
             ->schema([
-                Section::make('Country Information')
+                \Filament\Infolists\Components\Section::make('Country Information')
                     ->schema([
-                        TextEntry::make('code')
+                        \Filament\Infolists\Components\TextEntry::make('code')
                             ->label('Code'),
-                        TextEntry::make('name')
+                        \Filament\Infolists\Components\TextEntry::make('name')
                             ->label('Name'),
-                        TextEntry::make('phonecode')
+                        \Filament\Infolists\Components\TextEntry::make('phonecode')
                             ->label('Phone Code'),
                     ])
                     ->columns(3)
